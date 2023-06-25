@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from students import models as student_moduls
 from grants import models as grants_models
-
+from django.contrib import messages
 from grants.forms import GrantForm
 
 
@@ -25,14 +25,11 @@ def GrantDetailView(request, pk):
 
 
 def StudentListView(request, grant_id=None):
-    print('#'*10)
-    print(grant_id)
     if grant_id != 0:
         sc_items = grants_models.ScienceDirection.objects.filter(
             grant=grants_models.Grant.objects.last()).all()
         return render(request, 'grant_student_list.html', {'sc_items': sc_items})
     students = student_moduls.Student.objects.all()
-    print("et biyaq ishlab ketdi")
     context = {'students': students}
     return render(request, 'grant_student_list.html', context)
 
@@ -58,7 +55,8 @@ def StudentDetailView(request, pk):
         letter = student_moduls.Message.objects.create(student=student, letter=text)
         letter.save()
     except Exception as err:
-        return render(request, "send_message.html", context)
+        
+        return render(request, "grant_student_detail.html", context)
     
 
     return render(request, 'grant_student_detail.html', context)
