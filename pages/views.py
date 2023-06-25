@@ -91,3 +91,15 @@ def update_grant(request, pk):
     
     context["form"] = form
     return render(request, "grant_form.html", context)
+
+
+def delete_grant(request, pk):
+    context = {}
+
+    obj = grants_models.Grant.objects.get(id=pk)
+
+    if request.method == "POST":
+        obj.delete()
+        return redirect('grants')
+    context["obj"] = obj
+    return render(request, "grant_delete.html", context)

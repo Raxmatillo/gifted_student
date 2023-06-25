@@ -69,6 +69,8 @@
 
                         </tbody>
                     </table>
+                    <a href="{% url 'delete_grant' pk=grant.id %}" style="display: block; width:20%;margin-left: 80%; margin-top: 20px;" href="#"
+                        class="btn btn-danger">O'chirish</a>
                     <a href="{% url 'update_grant' pk=grant.id %}" style="display: block; width:20%;margin-left: 80%; margin-top: 20px;" href="#"
                         class="btn btn-primary">Tahrirlash</a>
                 </div>

@@ -7,6 +7,7 @@ urlpatterns = [
     path('grants/<int:pk>/', views.GrantDetailView, name='grant_detail'),
     path('grants/new/', views.create_grant, name='create_grant'),
     path('grants/update/<int:pk>/', views.update_grant, name="update_grant"),
+    path('grants/delete/<int:pk>/', views.delete_grant, name="delete_grant"),
 
     path('students/by_grant/<int:grant_id>/',
          views.StudentListView, name='students'),
