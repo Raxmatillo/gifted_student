@@ -8,6 +8,7 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 class GrantForm(forms.ModelForm):
+
     class Meta:
         model = Grant
         fields = '__all__'
@@ -24,12 +25,5 @@ class GrantForm(forms.ModelForm):
             'end_date': DateInput(),
             'create_at': DateInput(),
         }
-
-        # widgets = {
-            
-        #     'description': forms.Textarea(
-        #         attrs={'placeholder': 'Enter description here'}),
-        # }
-
 
 

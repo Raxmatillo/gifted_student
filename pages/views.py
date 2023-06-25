@@ -66,12 +66,28 @@ def StudentDetailView(request, pk):
 
 def create_grant(request):
     form = GrantForm(request.POST or None)
-
     if request.method == "POST":
+        form = GrantForm(data = request.POST, files = request.FILES)
         if form.is_valid():
             form.save()
+            obj = form.instance
+            print(obj)
             return redirect('grants')
     context = {
         "form":form
     }
     return render(request, 'grant_form.html', context)
+
+
+def update_grant(request, pk):
+    context = {}
+
+    obj = grants_models.Grant.objects.get(id=pk)
+    form = GrantForm(request.POST or None, instance=obj)
+
+    if form.is_valid():
+        form.save()
+        return redirect('grants')
+    
+    context["form"] = form
+    return render(request, "grant_form.html", context)
